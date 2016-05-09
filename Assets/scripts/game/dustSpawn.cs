@@ -21,6 +21,8 @@ public class dustSpawn : MonoBehaviour {
 		}
 	}
 	
-	
+	void resetReady () {
+		readyToSpawn = true;
+	}
 
 }
