@@ -4,12 +4,31 @@ using System.Collections;
 public class playerController : MonoBehaviour {
 
 	public float speed = 10.0f;
+	public float enemySpeed = 10.0f;
 
 	public GameObject bullet;
 	public float fireDelay = 0.5f;
 	public bool readyToFire = true;
 
 	public ParticleSystem explosion;
+
+	public GameObject player;
+
+	public GameObject world;
+	public GameController script;
+
+	public float posrand;
+
+	void Start () {
+		if (gameObject.tag != "Player") {
+			player = GameObject.FindGameObjectWithTag ("Player");
+			posrand = Random.Range (2f, -2f);
+
+			world = GameObject.Find("$gameController");
+			script = world.GetComponent<GameController> ();
+
+		}
+	}
 
 
 	void Update() {
@@ -27,7 +46,10 @@ public class playerController : MonoBehaviour {
 				Invoke("resetFire", fireDelay);
 			}
 		} else {
-			return;
+			if (player != null) {
+				float playerx = (player.transform.position.x - transform.position.x) - posrand;
+				transform.position = transform.position + new Vector3 (playerx, -1, 0) * (enemySpeed * Time.deltaTime);
+			}
 		}
 
 
@@ -36,6 +58,9 @@ public class playerController : MonoBehaviour {
 
 	//runs particle effect when killed
 	void OnTriggerEnter () {
+		if (gameObject.tag != "Player") {
+			script.score += 10;
+		}
 		Instantiate (explosion, this.transform.position,Quaternion.identity);
 		Destroy (gameObject);
 	}

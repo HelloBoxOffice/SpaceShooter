@@ -16,4 +16,8 @@ public class bulletMovement : MonoBehaviour {
 		transform.position = transform.position + new Vector3 (0, speed * Time.deltaTime, 0);
 
 	}
+
+	void OnTriggerEnter () {
+		Destroy (gameObject);
+	}
 }
