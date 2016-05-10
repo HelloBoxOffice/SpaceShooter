@@ -12,8 +12,11 @@ public class bulletMovement : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-
-		transform.position = transform.position + new Vector3 (0, speed * Time.deltaTime, 0);
+		if (gameObject.layer == 11) {
+			transform.position = transform.position + new Vector3 (0, -speed * Time.deltaTime, 0);
+		} else {
+			transform.position = transform.position + new Vector3 (0, speed * Time.deltaTime, 0);
+		}
 
 	}
 
