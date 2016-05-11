@@ -4,7 +4,7 @@ using System.Collections;
 public class enemySpawn : MonoBehaviour {
 
 	public GameObject enemy;
-	public float spawnDelay = 0.5f;
+	public float spawnDelay = 2.0f;
 	public bool readyToSpawn = true;
 	public GameObject player;
 
@@ -26,6 +26,7 @@ public class enemySpawn : MonoBehaviour {
 		} else {
 			return;
 		}
+			
 	}
 
 	void resetReady () {
